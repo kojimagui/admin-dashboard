@@ -6,10 +6,11 @@ import {
   increment,
   incrementAsync,
   decrement,
-  decrementAsync
+  decrementAsync,
 } from '../../modules/counter'
+import { Login } from '../../components/LoginPaper'
 
-const Home = props => (
+const Home = (props) => (
   <div>
     <h1>Home</h1>
     <p>Count: {props.count}</p>
@@ -33,28 +34,26 @@ const Home = props => (
         Go to about page via redux
       </button>
     </p>
+    <Login />
   </div>
 )
 
 const mapStateToProps = ({ counter }) => ({
   count: counter.count,
   isIncrementing: counter.isIncrementing,
-  isDecrementing: counter.isDecrementing
+  isDecrementing: counter.isDecrementing,
 })
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       increment,
       incrementAsync,
       decrement,
       decrementAsync,
-      changePage: () => push('/about-us')
+      changePage: () => push('/about-us'),
     },
     dispatch
   )
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
